@@ -1,4 +1,5 @@
 # ViewCustomizeRecipe
 Redmine「View customize plugin」のレシピ
 
-各フォルダにレシピ用のCSSとJavaScriptとREADMEを入れてあるため、詳細はそちらを参照。
+各フォルダが1レシピになっている。
+レシピフォルダ直下にそれぞれのCSS、JavaScript、READMEが入っている。
