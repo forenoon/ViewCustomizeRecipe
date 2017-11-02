@@ -28,14 +28,14 @@
 
 Redmine管理メニュー「View customize」設定の「new view customize」から以下の項目を追加する。
 
-* JavaScript
-    * Path pattern: ^(?<!/projects/)/issues(?!/)
+* JavaScript（チケット詳細）
+    * Path pattern: /issues/[0-9]+
     * Type: JavaScript
-    * Code: Githubの「JavaScript.js」の内容をコピペする
-* StyleSheet
-    * Path pattern: ^(?<!/projects/)/issues(?!/)
-    * Type: StyleSheet
-    * Code: Githubの「StyleSheet.css」の内容をコピペする
+    * Code: Githubの「JavaScript_called.js」の内容をコピペする
+* JavaScript（チケット一覧）
+    * Path pattern: /issues(?!/)
+    * Type: JavaScript
+    * Code: Githubの「JavaScript_caller.js」の内容をコピペする
 
 ## Notice
 
