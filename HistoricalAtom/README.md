@@ -3,18 +3,20 @@ Atom(History)
 
 チケット更新履歴RSS(/issues/changes.atom)にカスタムクエリを適用することで、RSSリーダーと連携してメール通知よりも柔軟な通知を受け取れるようになる。
 
-  ※ss: RSSリーダーに履歴が表示されている画像
+![RSS Notification](https://github.com/forenoon/ViewCustomizeRecipe/blob/HistoricalAtom/HistoricalAtom/screenshots/rss_popup.gif?raw=true "RSS Notification")
+
+Powered by Chrome Extension "RSS Feed Reader"
 
 ## Description
 
 マイページ下の「担当しているチケット」ページに、RSS「全変更の詳細」(/issues/changes.atom)をカスタムした「Atom(History)」を追加する。
 
-  ※ss: RedmineにAtom(History)が追加されている画像
+![Atom(history)](https://github.com/forenoon/ViewCustomizeRecipe/blob/HistoricalAtom/HistoricalAtom/screenshots/issues.png?raw=true "Atom(history)")
 
 これはRSS「全変更の詳細」にマイページ下の「Atom」と同じURLクエリストリングを追加しカスタムクエリを反映したもの。
 RSSリーダーにこの「Atom(History)」を登録することで、カスタムクエリで抽出したチケットの更新通知のみを取得できるようになる。
 
-  ※ss: RSS通知が来た瞬間の画像
+![RSS](https://github.com/forenoon/ViewCustomizeRecipe/blob/HistoricalAtom/HistoricalAtom/screenshots/rss.png?raw=true "RSS")
 
 * （例）「チェック担当者」のカスタムフィールドに自分が指定されていて、かつステータスが「解決」のようなチェック工程に入った場合の通知。
     * 「チェックしてください」程度の細かい連絡をリアルで受け取らずに済むようになる。
@@ -27,7 +29,7 @@ RSSリーダーにこの「Atom(History)」を登録することで、カスタ�
 
 マイページ「担当しているチケット」の「他の形式にエクスポート」に追加された「Atom(History)」を好みのRSSリーダーに登録する。
 
-  ※ss: RSSリーダーに登録している画像。リンク自体も写っているといいかも。
+![RSS Subscribe](https://github.com/forenoon/ViewCustomizeRecipe/blob/HistoricalAtom/HistoricalAtom/screenshots/rss_subscribe2.png?raw=true "RSS Subscribe")
 
 ## Install
 
