@@ -4,7 +4,7 @@ FloatingIssue
 チケット一覧でチケット行をダブルクリックすると、チケット詳細がその場でダイアログ表示される。  
 その場でのチケット内容や履歴のちょっとした確認に便利。
 
-![capture](https://github.com/forenoon/ViewCustomizeRecipe/blob/HistoricalAtom/FloatingIssue/screenshots/capture.gif?raw=true "Capture")
+![capture](https://github.com/forenoon/ViewCustomizeRecipe/blob/FloatingIssue/FloatingIssue/screenshot/capture.gif?raw=true "Capture")
 
 ## Description
 
