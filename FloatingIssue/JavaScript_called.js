@@ -37,5 +37,23 @@ $(function() {
         menu.append('<li><a href="#history">History</a></li>');
     }
     menu.prependTo("#content");
-    $("#content").tabs();
+
+    // get before active tab from cookie
+    var nameCookieTab = "vc_forenoon_FloatingIssue_tab";
+    var activeBefore = 0;
+    {
+        var _active = window.localStorage.getItem(nameCookieTab);
+        activeBefore = _active != null ? _active : 0;
+    }
+
+    $("#content").tabs({
+        active: activeBefore,
+        activate: function(event, ui){
+            switch(ui.newTab.text())
+            {
+                case "Issue": window.localStorage.setItem(nameCookieTab, 0); break;
+                case "History": window.localStorage.setItem(nameCookieTab, 1); break;
+            }
+        }
+    });
 })

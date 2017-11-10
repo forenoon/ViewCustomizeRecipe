@@ -1,44 +1,64 @@
 /* ------ view-customizes:
  チケット詳細のフローティング表示（チケット一覧）
 ----------------------- */
-function ShowFloatingIssueWindow(urlIssue){
-    $("#FloatingIssueWindow").dialog({
-        autoOpen: true,
-        width: 970,
-        height: 700,
-        modal: false,
-        open : function(){
-            $("#FloatingIssueWindow").append('<iframe id="FloatingIssueWindowDiv"></iframe>');
-            $("#FloatingIssueWindowDiv").attr({
-                src : urlIssue+"?view_type=min",
-                width : "98%",
-                height : "98%"
-            });
-        },
-        close : function(){
-            $("#FloatingIssueWindowDiv").remove();
-        }
+function DeferredLoadIssueDetail(divParent, urlIssue){
+    var deferred = $.Deferred();
+
+    var iframe = $('<iframe></iframe>').attr({
+        'id':'FloatingIssueWindow',
+        'src':urlIssue,
+        'width':'98%',
+        'height':'98%'
     });
+    iframe.load(deferred.resolve);
+    iframe.appendTo(divParent);
+
+    deferred.done(function(){
+        ;
+    });
+    
+    return deferred.promise();
 }
 
 $(function() {
-    $("#main").append('<div id="FloatingIssueWindow" />');
-
+    var divParent = $('<div />').attr({
+        'id':'FloatingIssueWindowContainer'
+    });
+    divParent.css("display", "none");
+    divParent.appendTo("#main");
+    divParent.dialog({
+        autoOpen: false,
+        width: 970,
+        height: 700,
+        modal: true,
+        close : function(){
+            $("#FloatingIssueWindow").remove();
+        }
+    });
+    
     $("#content table.issues .issue").dblclick(function(eventObject){
+        var aSubject = null;
         var url = "";
         switch(eventObject.target.nodeName){
             case "TR":
-                url = $(eventObject.target).find(".subject > a")[0].href;
+                aSubject = $(eventObject.target).find(".subject > a")[0];
+                url = aSubject.href;
                 break;
 
             case "TD":
-                url = $(eventObject.target.parentElement).find(".subject > a")[0].href;
+                aSubject = $(eventObject.target.parentElement).find(".subject > a")[0];
+                url = aSubject.href;
                 break;
 
             default:
                 return ;
         }
-        ShowFloatingIssueWindow(url);
+
+        $.when(DeferredLoadIssueDetail(divParent, url+"?view_type=min"))
+            .then(function(){
+                var dialog = $("#FloatingIssueWindowContainer");
+                dialog.dialog('option', 'title', '<a href="'+url+'">[To Issue]</a>');
+                dialog.dialog('open');
+            })
     });
 })
-
