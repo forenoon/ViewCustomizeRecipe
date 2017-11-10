@@ -1,28 +1,23 @@
-{Name}
+FloatingIssue
 ====
 
-{Overview}
-※「どんないいこと」が追加されるか簡単な概要を書く。
-※詳細は「Description」に書く。
-※インパクトがあるイメージ画像があればそれを貼るとよい。
-※https://github.com/tsenart/vegeta
+チケット一覧でチケット行をダブルクリックすると、チケット詳細がその場でダイアログ表示される。  
+その場でのチケット内容や履歴のちょっとした確認に便利。
+
+![capture](https://github.com/forenoon/ViewCustomizeRecipe/blob/HistoricalAtom/FloatingIssue/screenshots/capture.gif?raw=true "Capture")
 
 ## Description
 
-※「どこの」「なにが」「どう変わり」「どうなるのか」を書く。
-※仕組みや原理の概要を書く。
-※イメージしやすいようい使用例もここに書く。
-※https://github.com/kennethreitz/requests
+チケット一覧のチケット行をダブルクリックすると、そのチケットの詳細ページが整形されてダイアログに表示される。
 
-※画像もあるとインストール前にイメージが掴みやすい。
-※https://github.com/peco/peco
-※最近はスクリーンショットをアニメGIFで撮影する優秀なツールもある
-※キャプチャツール: https://www.cockos.com/licecap/
+小さなスペースに情報を多く表示するためにRedmineのヘッダーやサイドバー、編集機能はカットしている。
+
+また連続でチケット詳細を見ていくことを考慮して、チケット情報と更新履歴をタブで分け、さらに別のチケット詳細を開いた時にもアクティブタブは維持される。  
+例えば更新履歴のみを連続で見たい場合は、「History」タブをアクティブにした状態で別チケットを開けば、Historyタブがアクティブになった状態でダイアログが開く。
 
 ## Usage
 
-※使い方説明書。「どこの」「なにを」「どう使うか」を書く。
-※ここも画像があると迷いにくくなる。
+チケット一覧の！チケット行を！！ダブルクリック！！！
 
 ## Install
 
@@ -39,7 +34,8 @@ Redmine管理メニュー「View customize」設定の「new view customize」�
 
 ## Notice
 
-※注意事項を書く
+別チケットでダイアログを開き直してもアクティブタブが維持されるためにローカルストレージを使用している。  
+よってHTML5以上でしか動作しない。
 
 ## Author
 
