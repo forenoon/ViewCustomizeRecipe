@@ -39,15 +39,18 @@ $(function() {
     $("#content table.issues .issue").dblclick(function(eventObject){
         var aSubject = null;
         var url = "";
+        var title ="";
         switch(eventObject.target.nodeName){
             case "TR":
                 aSubject = $(eventObject.target).find(".subject > a")[0];
                 url = aSubject.href;
+                title = aSubject.text;
                 break;
 
             case "TD":
                 aSubject = $(eventObject.target.parentElement).find(".subject > a")[0];
                 url = aSubject.href;
+                title = aSubject.text;
                 break;
 
             default:
@@ -57,7 +60,7 @@ $(function() {
         $.when(DeferredLoadIssueDetail(divParent, url+"?view_type=min"))
             .then(function(){
                 var dialog = $("#FloatingIssueWindowContainer");
-                dialog.dialog('option', 'title', '<a href="'+url+'">[To Issue]</a>');
+                dialog.dialog('option', 'title', '> '+title);
                 dialog.dialog('open');
             })
     });
