@@ -1,5 +1,7 @@
 /* ------ view-customizes:
- チケット詳細のフローティング表示（チケット詳細）
+ FloatingIssue
+ Path pattern: /issues/[0-9]+
+ Type: JavaScript
 ----------------------- */
 $(function() {
     // search "view_type=min" in GET param.

@@ -1,5 +1,7 @@
 /* ------ view-customizes:
- チケット詳細のフローティング表示（チケット一覧）
+ FloatingIssue
+ Path pattern: /issues(?!/)
+ Type: JavaScript
 ----------------------- */
 function DeferredLoadIssueDetail(divParent, urlIssue){
     var deferred = $.Deferred();

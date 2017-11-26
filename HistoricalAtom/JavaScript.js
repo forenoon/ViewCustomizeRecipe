@@ -1,5 +1,7 @@
 /* ------ view-customizes:
- マイページへAtom(History)を追加
+HistoricalAtom
+Path pattern: ^(?<!/projects/)/issues(?!/)
+Type: JavaScript
 ----------------------- */
 $(function() {
     var span = $("div#content .other-formats a.csv").parent().clone(true);

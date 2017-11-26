@@ -1,5 +1,7 @@
 /* ------ view-customizes:
- {機能名を入れる}
+ {Customize Name}
+ Path pattern: 
+ Type: JavaScript
 ----------------------- */
 $(function() {
     // insert your code
