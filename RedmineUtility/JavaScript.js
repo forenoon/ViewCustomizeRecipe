@@ -8,10 +8,10 @@
  * @param {string} urlRoot Redmine root URL
  * @param {string} apikey login user apikey
  */
-var Redmine = function(urlRoot, apikey="")
+var Redmine = function(urlRoot="/", apikey="")
 {
-	this.urlRoot = urlRoot;
-	this.apikey = apikey;
+    this.urlRoot = urlRoot.replace(/(\/*)$/, "/");
+    this.apikey = apikey;   
 }
 
 /**
@@ -20,8 +20,8 @@ var Redmine = function(urlRoot, apikey="")
  */
 Redmine.prototype.setupApikeyAsync = function()
 {
-	let _self = this;
-	return $.get(this.urlRoot+'/my/account')
+    let _self = this;
+    return $.get(this.urlRoot+'my/account')
         .then(
             (_html) => {
                 _self.apikey = $("#api-access-key", $(_html)).first().text();
@@ -39,16 +39,15 @@ Redmine.prototype.setupApikeyAsync = function()
  */
 Redmine.prototype.getJsonAsync = function(url, data)
 {
-	return $.ajax({
-		type: 'get',
-		url: this.urlRoot + url,
-		data: data,
-		headers: {'X-Redmine-API-Key': this.apikey},
-		dataType: 'json',
-		contentType: 'application/json',
-	});
+    return $.ajax({
+        type: 'get',
+        url: this.urlRoot + url.replace(/^(\/*)/, "").replace(/(\.\w+)?$/, ".json"),
+        data: data,
+        headers: {'X-Redmine-API-Key': this.apikey},
+        dataType: 'json',
+        contentType: 'application/json',
+    });
 }
-
 
 /**
  * Redmine API POST method. 
@@ -58,14 +57,14 @@ Redmine.prototype.getJsonAsync = function(url, data)
  */
 Redmine.prototype.postJsonAsync = function(url, data)
 {
-	return $.ajax({
-		type: 'put',
-		url: this.urlRoot + url,
-		data: JSON.stringify(data),
-		headers: {'X-Redmine-API-Key': this.apikey},
-		dataType: 'json',
-		contentType: 'application/json',
-	});
+    return $.ajax({
+        type: 'put',
+        url: this.urlRoot + url.replace(/^(\/*)/, "").replace(/(\.\w+)?$/, ".json"),
+        data: JSON.stringify(data),
+        headers: {'X-Redmine-API-Key': this.apikey},
+        dataType: 'json',
+        contentType: 'application/json',
+    });
 }
 
 /**
@@ -76,12 +75,12 @@ Redmine.prototype.postJsonAsync = function(url, data)
  */
 Redmine.prototype.putJsonAsync = function(url, data)
 {
-	return $.ajax({
-		type: 'put',
-		url: this.urlRoot + url,
-		data: JSON.stringify(data),
-		headers: {'X-Redmine-API-Key': this.apikey},
-		dataType: 'text',
-		contentType: 'application/json',
-	});
+    return $.ajax({
+        type: 'put',
+        url: this.urlRoot + url.replace(/^(\/*)/, "").replace(/(\.\w+)?$/, ".json"),
+        data: JSON.stringify(data),
+        headers: {'X-Redmine-API-Key': this.apikey},
+        dataType: 'text',
+        contentType: 'application/json',
+    });
 }
