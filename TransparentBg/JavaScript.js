@@ -1,8 +1,7 @@
 /* ------ view-customizes:
  TransparentBg
  Path pattern: /*
- Type: JavaScript
------------------------ */
+ ----------------------- */
 $(function() {
     const urlBackgroundImg = 'url(http://192.168.48.10/redmine/attachments/download/2/Skyrim_1080x964.png)';
 

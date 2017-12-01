@@ -1,8 +1,7 @@
 /* ------ view-customizes:
  FloatingIssue
  Path pattern: /issues/[0-9]+
- Type: JavaScript
------------------------ */
+ ----------------------- */
 $(function() {
     // search "view_type=min" in GET param.
     var strTrigger = "view_type=min";

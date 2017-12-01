@@ -1,8 +1,7 @@
 /* ------ view-customizes:
  FloatingIssue
  Path pattern: /issues(?!/)
- Type: JavaScript
------------------------ */
+ ----------------------- */
 function DeferredLoadIssueDetail(divParent, urlIssue){
     var deferred = $.Deferred();
 
