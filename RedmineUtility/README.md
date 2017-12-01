@@ -1,45 +1,59 @@
-{Name}
+(Lib) Redmine Utility
 ====
 
-{Overview}
-※「どんないいこと」が追加されるか簡単な概要を書く。
-※詳細は「Description」に書く。
-※インパクトがあるイメージ画像があればそれを貼るとよい。
-※https://github.com/tsenart/vegeta
+RedmineのREST API用ユーティリティクラス。このレシピ自体は単体で動作しない。
 
 ## Description
 
-※「どこの」「なにが」「どう変わり」「どうなるのか」を書く。
-※仕組みや原理の概要を書く。
-※イメージしやすいようい使用例もここに書く。
-※https://github.com/kennethreitz/requests
+JavaScriptからRedmineのREST APIへアクセスするためのクラス。
 
-※画像もあるとインストール前にイメージが掴みやすい。
-※https://github.com/peco/peco
-※最近はスクリーンショットをアニメGIFで撮影する優秀なツールもある
-※キャプチャツール: https://www.cockos.com/licecap/
+* $.ajax()とPromiseによる非同期カスケードに対応
+* ログインユーザーのapikeyを取得する機能を実装
 
 ## Usage
+```
+var target_issue = '100';
+var redmine = new Redmine("/redmine"); // case: Bitnami Redmine
 
-※使い方説明書。「どこの」「なにを」「どう使うか」を書く。
-※ここも画像があると迷いにくくなる。
+redmine.setupApikeyAsync()
+.then(
+    // wait & get apikey, request GET issue.
+    (apikey) => {
+        return redmine.getJsonAsync('issues/' + target_issue + '.json', {include:'relations'});
+    },
+    (response) => console.log(response.status + ":" + response.statusText)
+)
+.then(
+    // wait & get issue, request update issue.
+    (json) => {
+        return redmine.putJsonAsync('issues/' + json.issue.id + '.json', {
+                    issue:{
+                        subject:'Changed Subject from REST API',
+                        notes:'***REST API TEST***'
+                    }
+                });
+    },
+    (response) => console.log(response.status + ":" + response.statusText)
+)
+.then(
+    // wait & update issue.
+    () => console.log("REST API finish!");
+    (response) => console.log(response.status + ":" + response.statusText)
+);
+```
 
 ## Install
 
 Redmine管理メニュー「View customize」設定の「new view customize」から以下の項目を追加する。
 
 * JavaScript
-    * Path pattern: ^(?<!/projects/)/issues(?!/)
+    * Path pattern: /*
     * Type: JavaScript
     * Code: Githubの「JavaScript.js」の内容をコピペする
-* StyleSheet
-    * Path pattern: ^(?<!/projects/)/issues(?!/)
-    * Type: StyleSheet
-    * Code: Githubの「StyleSheet.css」の内容をコピペする
 
 ## Notice
 
-※注意事項を書く
+* `Redmine.setupApikeyAsync()`はログインユーザーのapikeyを取得しているが、これはユーザーの「個人設定」からスクレイピングしている。黒魔術に近い。
 
 ## Author
 
